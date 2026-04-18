@@ -46,8 +46,7 @@ import Blur from "../components/Blur";
 
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
-
+// import Lenis from 'lenis'
 
 
 const Home = () => {
@@ -187,20 +186,20 @@ const Home = () => {
 
 
   
-  useEffect(() => {
-    const lenis = new Lenis({
-      lerp: 0.05,     // smoothness (0.05 = very smooth)
-      smooth: true,
-    });
+  // useEffect(() => {
+  //   const lenis = new Lenis({
+  //     lerp: 0.05,     // smoothness (0.05 = very smooth)
+  //     smooth: true,
+  //   });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+  //   function raf(time) {
+  //     lenis.raf(time);
+  //     requestAnimationFrame(raf);
+  //   }
 
-    requestAnimationFrame(raf);
+  //   requestAnimationFrame(raf);
 
-  }, []);
+  // }, []);
 
 
 

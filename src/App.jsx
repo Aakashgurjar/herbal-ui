@@ -17,8 +17,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { PopupProvider } from "./context/PopupContext";
 import  { Toaster } from "react-hot-toast";
-import Lenis from "@studio-freight/lenis";
-
+import Lenis from 'lenis'
 import React from "react";
 
 function App() {
