@@ -22,6 +22,7 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
+import { PopupProvider } from "./context/PopupContext";
 
 import App from "./App.jsx";
 
@@ -39,7 +40,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
  <React.StrictMode>
     <ChakraProvider  theme={theme}>
       <BrowserRouter>
-        <App />
+
+      <PopupProvider>
+       <App />
+    </PopupProvider>
+    
       </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>

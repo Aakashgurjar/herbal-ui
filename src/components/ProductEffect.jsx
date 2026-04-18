@@ -38,22 +38,23 @@ const ProductEffect = () => {
           <img
             src={dropimg}
             alt="drpimg"
-            className="border-2 relative -bottom-20  md:bottom-8 lg:-bottom-4"
+            className=" relative -bottom-20  md:bottom-8 lg:-bottom-4"
           />
         </div>
 
-        <div className=" relative flex flex-col md:flex-row items-center justify-center gap-10 border-2 ">
-          <div className="relative  flex-col gap-4 border-2 border-red-300 right-5 hidden sm:flex ">
+        <div className=" relative flex flex-col md:flex-row items-center justify-center gap-10  ">
+          
+          <div className="relative  flex-col gap-4  right-5 hidden sm:flex ">
             {leftEffects.map((effect, index) => (
               <div
                 key={index}
-                className="flex items-center justify-end bg-[#fdfbea] px-1 py-1 rounded-r-full w-[300px] lg:w-[350px] xl:w-[500px] shadow border-2"
+                className="flex items-center justify-end bg-[#fdfbea] px-1 py-1 rounded-r-full w-[300px] lg:w-[350px] xl:w-[500px] "
               >
                 <span className="font-normal md:text-[1rem]  whitespace-nowrap text-black pr-2">
                   {effect}
                 </span>
                 <span className="bg-orange-400 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold">
-                  01
+                  {index +1 }
                 </span>
               </div>
             ))}
@@ -67,14 +68,14 @@ const ProductEffect = () => {
             />
           </div>
 
-          <div className="relative  flex-col gap-4 border-2 border-red-300 left-5 hidden sm:flex ">
+          <div className="relative  flex-col gap-4  left-5 hidden sm:flex ">
             {rightEffects.map((effect, index) => (
               <div
                 key={index}
-                className="flex items-center justify-start bg-[#fdfbea] px-1 py-1 rounded-l-full w-[300px] lg:w-[350px] xl:w-[500px] shadow"
+                className="flex items-center justify-start bg-[#fdfbea] px-1 py-1 rounded-l-full w-[300px] lg:w-[350px] xl:w-[500px] "
               >
                 <span className="bg-orange-400 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold">
-                  01
+                  {index+5}
                 </span>
                 <span className="font-normal md:text-[1rem]  whitespace-nowrap pl-2 text-black text-start ">
                   {effect}
@@ -82,6 +83,7 @@ const ProductEffect = () => {
               </div>
             ))}
           </div>
+
         </div>
       </section>
     </div>

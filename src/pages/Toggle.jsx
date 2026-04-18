@@ -1,7 +1,31 @@
 import React, { useState } from "react";
 import single from "../assets/single.png";
+import right from "../assets/right.png"
+
+import visa from "../assets/visa.png"
+import cards from "../assets/cards.png"
+import cash from "../assets/cash.png"
+
+import { IoIosArrowBack } from "react-icons/io";
+import shape from '../assets/shape.png'
+
+import truck from "../assets/truck.png";
+import packages from "../assets/packages.png"
+import headphone from "../assets/headphone.png"
+import Group6 from "../assets/Group6.png"
+
+// import { PiShoppingCartSimple } from "react-icons/pi";
+import { FaCartShopping } from "react-icons/fa6";
+import { MdLocationOn } from "react-icons/md";
+import { FaMoneyCheckAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 
 const Toggle = () => {
+
+  const navigate = useNavigate();
+
+
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
@@ -9,8 +33,14 @@ const Toggle = () => {
     password: "",
   });
 
+  
   const nextStep = () => {
-    if (step < 3) setStep(step + 1);
+    if (step < 3){
+      console.log("set is " , step );
+      setStep(step + 1);
+    }
+  
+       
   };
 
   const prevStep = () => {
@@ -32,10 +62,114 @@ const Toggle = () => {
     setQuantity(quantity + 1);
   };
 
-  //  2page like data logics
+
+  //  2page like data logics  my code 
+  // const [items, setItems] = useState([]);
+  // const [editIndex, setEditIndex] = useState(null);
+  // const [showForm, setShowForm] = useState(true);
+  // const [dataForm, setDataForm] = useState({
+  //   fullName: "",
+  //   mobile: "",
+  //   email: "",
+  //   address: "",
+  //   landmark: "",
+  //   pincode: "",
+  //   city: "",
+  //   state: "",
+  //   country: "India",
+  // });
+
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setDataForm((prev) => ({ ...prev, [name]: value }));
+  // };
+
+  // const handleSave = () => {
+  //   console.log("Data Saved:", dataForm);
+
+  //   if (editIndex !== null) {
+  //     // Update existing item
+  //     const updated = [...items];
+  //     updated[editIndex] = dataForm;
+  //     setItems(updated);
+  //     setEditIndex(null);
+  //   } else {
+  //     // Add new item
+  //     setItems((prevItems) => [...prevItems, dataForm]);
+  //   }
+
+  //   // Reset form
+  //   setDataForm({
+  //     fullName: "",
+  //     mobile: "",
+  //     email: "",
+  //     address: "",
+  //     landmark: "",
+  //     pincode: "",
+  //     city: "",
+  //     state: "",
+  //     country: "India",
+  //   });
+
+  //   setShowForm(false); // Hide form after saving
+  // };
+
+  // const handleRemove = (indexToRemove) => {
+  //   setItems((prevItems) =>
+  //     prevItems.filter((_, index) => index !== indexToRemove)
+  //   );
+  //   console.log("current indx", indexToRemove);
+
+  //   // If we're editing the item being removed, reset the form
+  //   if (editIndex === indexToRemove) {
+  //     setEditIndex(null);
+  //     setDataForm({
+  //       fullName: "",
+  //       mobile: "",
+  //       email: "",
+  //       address: "",
+  //       landmark: "",
+  //       pincode: "",
+  //       city: "",
+  //       state: "",
+  //       country: "India",
+  //     });
+  //     setShowForm(false);
+  //   }
+  // };
+
+  // const handleEdit = (index) => {
+  //   // Populate form with the item's data
+  //   setDataForm(items[index]);
+  //   setEditIndex(index);
+  //   setShowForm(true); // Show form for editing
+  // };
+
+  // const handleAddNew = () => {
+  //   setDataForm({
+  //     fullName: "",
+  //     mobile: "",
+  //     email: "",
+  //     address: "",
+  //     landmark: "",
+  //     pincode: "",
+  //     city: "",
+  //     state: "",
+  //     country: "India",
+  //   });
+  //   setEditIndex(null);
+  //   setShowForm(true); // Show form for adding new address
+  // };
+
+
+
+
+
+  // chatgpt code 
   const [items, setItems] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
   const [showForm, setShowForm] = useState(true);
+  const [errors, setErrors] = useState({});
   const [dataForm, setDataForm] = useState({
     fullName: "",
     mobile: "",
@@ -44,17 +178,86 @@ const Toggle = () => {
     landmark: "",
     pincode: "",
     city: "",
-    state: "India",
+    state: "",
+    country: "India",
   });
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDataForm((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" })); // clear error on change
   };
+  
+  const validateForm = () => {
+    let newErrors = {};
+  
+    // Full Name
+    // if (!dataForm.fullName.trim()) {
+    //   newErrors.fullName = "Full name is required.";
+    // } else if (!/^[A-Za-z]+(?:\s[A-Za-z]+)*$/.test(dataForm.fullName.trim())) {
+    //   newErrors.fullName = "Only letters and single spaces allowed.";
+    // } else if (dataForm.fullName.trim().split(" ").length < 2) {
+    //   newErrors.fullName = "Enter both first and last name.";
+    // }
+  
+    // Mobile
+    // if (!dataForm.mobile.trim()) {
+    //   newErrors.mobile = "Mobile number is required.";
+    // } else if (!/^[6-9]\d{9}$/.test(dataForm.mobile.trim())) {
+    //   newErrors.mobile = "Enter a valid 10-digit Indian mobile number.";
+    // }
+  
+    // Email
+    // if (!dataForm.email.trim()) {
+    //   newErrors.email = "Email is required.";
+    // } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dataForm.email.trim())) {
+    //   newErrors.email = "Enter a valid email address.";
+    // }
+  
+    // Address
+    // if (!dataForm.address.trim()) {
+    //   newErrors.address = "Address is required.";
+    // } else if (dataForm.address.trim().length < 5) {
+    //   newErrors.address = "Address must be at least 5 characters.";
+    // }
 
+    //landmark
+    // if( !dataForm.landmark.trim()){
+    //   newErrors.landmark = 'Landmark is required.';
+    // }
+
+  
+    // Pincode
+    // if (!dataForm.pincode.trim()) {
+    //   newErrors.pincode = "Pincode is required.";
+    // } else if (!/^\d{6}$/.test(dataForm.pincode.trim())) {
+    //   newErrors.pincode = "Enter a valid 6-digit pincode.";
+    // }
+  
+    // City
+    // if (!dataForm.city.trim()) {
+    //   newErrors.city = "City is required.";
+    // }
+  
+    // State
+    // if (!dataForm.state.trim()) {
+    //   newErrors.state = "State is required.";
+    // }
+  
+    // Country
+    // if (!dataForm.country.trim()) {
+    //   newErrors.country = "Country is required.";
+    // }
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
   const handleSave = () => {
+    if (!validateForm()) return; // stop if invalid
+  
     console.log("Data Saved:", dataForm);
-
+  
     if (editIndex !== null) {
       // Update existing item
       const updated = [...items];
@@ -65,7 +268,7 @@ const Toggle = () => {
       // Add new item
       setItems((prevItems) => [...prevItems, dataForm]);
     }
-
+  
     // Reset form
     setDataForm({
       fullName: "",
@@ -75,19 +278,19 @@ const Toggle = () => {
       landmark: "",
       pincode: "",
       city: "",
-      state: "India",
+      state: "",
+      country: "India",
     });
-
-    setShowForm(false); // Hide form after saving
+  
+    setShowForm(false);
   };
-
+  
   const handleRemove = (indexToRemove) => {
     setItems((prevItems) =>
       prevItems.filter((_, index) => index !== indexToRemove)
     );
     console.log("current indx", indexToRemove);
-
-    // If we're editing the item being removed, reset the form
+  
     if (editIndex === indexToRemove) {
       setEditIndex(null);
       setDataForm({
@@ -98,19 +301,19 @@ const Toggle = () => {
         landmark: "",
         pincode: "",
         city: "",
-        state: "India",
+        state: "",
+        country: "India",
       });
       setShowForm(false);
     }
   };
-
+  
   const handleEdit = (index) => {
-    // Populate form with the item's data
     setDataForm(items[index]);
     setEditIndex(index);
-    setShowForm(true); // Show form for editing
+    setShowForm(true);
   };
-
+  
   const handleAddNew = () => {
     setDataForm({
       fullName: "",
@@ -120,11 +323,27 @@ const Toggle = () => {
       landmark: "",
       pincode: "",
       city: "",
-      state: "India",
+      state: "",
+      country: "India",
     });
     setEditIndex(null);
-    setShowForm(true); // Show form for adding new address
+    setShowForm(true);
   };
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const defaultAddress = {
     name: "Huzeifa Bagwala",
@@ -133,6 +352,8 @@ const Toggle = () => {
     contact: "(936) 361-0310",
     email: "dummyherba@gmail.com",
   };
+
+
 
   // 3 page data logic
   const [paymentMethod, setPaymentMethod] = useState("razorpay");
@@ -145,30 +366,48 @@ const Toggle = () => {
   const Continuehandle = () => {
     setIsOrderConfirmed(true);
     alert(`Selected Payment Method: ${paymentMethod}`);
+
+
+
   };
+  
+  const arr = [
+    { icon: <FaCartShopping />, label: 'Cart', no: 1  },
+    { icon: <MdLocationOn />, label: 'Address', no: 2 },
+    { icon: <FaMoneyCheckAlt/>, label: 'Payment', no: 3 },
+
+  ];
+
+
+  function ContinueShopping(){
+
+    navigate('/');
+    console.log("continue shopping");
+      
+  }
+
 
   const renderForm = () => {
     switch (step) {
       case 1:
         return (
-          //  1 page data
-          <div className="animate-fade-in border-2 ">
-            <div className="bg-white min-h-screen p-4 md:p-8 ">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div className="lg:col-span-2 bg-white border rounded shadow-sm p-6">
-                  <div className="flex flex-col md:flex-row gap-6">
+          <div className="animate-fade-in ">
+            <div className="bg-white sm:min-h-[90vh] p-2 md:p-8 mt-3">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8 max-w-6xl 0 mx-auto  ">
+                <div className="lg:col-span-2 bg-white rounded shadow-sm   lg:p-6">
+                  <div className="flex flex-row md:flex-row gap-1 md:gap-3 xl:gap-6 ">
                     <img
                       src={single}
                       alt="Product"
-                      className="w-24 h-32 object-contain"
+                      className="w-16 h-20  lg:w-20 lg:h-28 object-contain"
                     />
-                    <div className="flex-1">
-                      <h2 className="text-lg font-semibold">
-                        <span className="text-orange-600">Herba Essential</span>{" "}
+                    <div className="flex-1 pt-1">
+                      <h2 className="text-xl font-semibold">
+                        <span className="text-orange-400 text-[1.2rem]">Herba Essential</span>{" "}
                         – Hair Nutrition | 250g | Take 1 sachet daily after
                         meals
                       </h2>
-                      <ul className="text-sm text-gray-700 mt-2 space-y-1">
+                      <ul className=" text-[0.6rem] sm:text-sm text-gray-700 mt-2 space-y-1">
                         <li>✅ Supports Stronger, Thicker Hair Growth</li>
                         <li>
                           ✅ Helps Control Hairfall & Reverse Premature Greying
@@ -176,9 +415,11 @@ const Toggle = () => {
                       </ul>
                       <div className="mt-4 flex items-center justify-between">
                         <div>
-                          <p className="text-gray-500 text-sm">MRP:</p>
-                          <p className="text-xl font-semibold">₹599</p>
-                          <p className="text-green-600 text-sm">
+                          <div className="flex sm:flex-row">
+                            <p className="text-gray-500  pr-1 text-sm">MRP:</p>
+                            <p className="text-xl pl-1 font-semibold">₹599</p>
+                          </div>
+                          <p className="text-orange-500 text-sm">
                             Your save ₹200
                           </p>
                         </div>
@@ -189,10 +430,10 @@ const Toggle = () => {
                           >
                             −
                           </button>
-                          <span>{quantity}</span>
+                          <span>{quantity}   </span>
                           <button
                             onClick={handleIncrease}
-                            className="text-lg font-bold text-orange-600"
+                            className="text-lg font-bold bg-orange-400 text-white px-2 rounded"
                           >
                             +
                           </button>
@@ -201,9 +442,10 @@ const Toggle = () => {
                     </div>
                   </div>
 
-                  <div className="mt-6 border-t pt-4">
-                    <h3 className="font-semibold">Short Description:</h3>
-                    <p className="text-sm text-gray-600 mt-1">
+                  <div className="mt-3 border-t pt-1 border-2 rounded h-1/2 bg-[#FBF7E9]">
+                    <h3 className="font-semibold p-1 ">Short Description:</h3>
+                    <hr />
+                    <p className="text-sm text-gray-600 mt-1 p-1">
                       Herba Essential is a 100% organic hair nutrition
                       supplement designed to reduce hair fall, promote growth,
                       and reverse premature greying — naturally and effectively.
@@ -211,36 +453,36 @@ const Toggle = () => {
                   </div>
                 </div>
 
-                <div className="space-y-6">
-                  <div className="border rounded p-4 shadow-sm">
-                    <h3 className="font-semibold mb-2">Offers</h3>
-                    <div className="text-sm text-gray-700 space-y-1">
+                <div className="space-y-2 lg:space-y-6">
+                  <div className="border-2 rounded p-2 lg:p-4 shadow-sm bg-[#FBF7E9]">
+                    <h3 className="font-semibold mb-1 lg:mb-2">Offers</h3>
+                    <div className="text-[0.85rem] lg:text-sm text-gray-700 space-y-1">
                       <p>
                         🟠 ₹200 saved with product price drop!{" "}
-                        <span className="text-green-600 font-medium ml-2">
+                        <span className="text-green-600  font-normal lg:font-medium ml-2">
                           Applied
                         </span>
                       </p>
                       <p>
                         🟠 ₹200 saved with product price drop!{" "}
-                        <span className="text-green-600 font-medium ml-2">
+                        <span className="text-green-600 font-normal lg:font-medium ml-2">
                           Applied
                         </span>
                       </p>
                     </div>
-                    <div className="mt-4 flex">
+                    <div className="mt-3 lg:mt-4 flex">
                       <input
                         type="text"
                         placeholder="Enter coupon code"
                         className="border flex-1 p-2 rounded-l text-sm"
                       />
-                      <button className="bg-orange-400 text-white px-4 rounded-r">
+                      <button className="bg-orange-400 text-white px-2 lg:px-4 rounded-r">
                         Apply
                       </button>
                     </div>
                   </div>
 
-                  <div className="border rounded p-4 shadow-sm">
+                  {/* <div className="border rounded p-2 lg:p-4 shadow-sm">
                     <h3 className="font-semibold mb-2">Price Details</h3>
                     <div className="text-sm space-y-1 text-gray-800">
                       <div className="flex justify-between">
@@ -258,24 +500,77 @@ const Toggle = () => {
                         </span>{" "}
                         <span className="text-green-600">Free</span>
                       </div>
+
                       <div className="flex justify-between font-semibold border-t pt-2">
                         <span>Total</span>
                         <span>₹599</span>
                       </div>
+
                     </div>
                   </div>
 
                   <button
                     onClick={nextStep}
                     disabled={step === 3}
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded"
+                    className="w-full  bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded"
                   >
                     Enter Address
-                  </button>
+                  </button> */}
+
+                  <div className="">
+                    <div className="border rounded p-2 lg:p-4 shadow-sm mb-4 bg-[#FBF7E9]">
+                      <h3 className="font-semibold mb-2">Price Details</h3>
+                      <div className="text-sm space-y-1 text-gray-800">
+                        <div className="flex justify-between">
+                          <span>Total MRP</span>
+                          <span>₹{quantity * 599 }</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Discount on MRP</span>
+                          <span>₹0</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Delivery Charges</span>
+                          <div>
+                            <span className="line-through text-gray-500">
+                              ₹49
+                            </span>{" "}
+                            <span className="text-green-600">Free</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between font-semibold border-t pt-2">
+                          <span>Total</span>
+                          <span>₹{quantity * 599 }</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={nextStep}
+                      disabled={step === 3}
+                      className="hidden sm:block  w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded shadow-green-200 shadow-lg"
+                    >
+                      Enter Address
+                    </button>
+                  </div>
+
+                  <div className="block sm:hidden fixed bottom-0 inset-x-2  rounded bg-orange-400 flex justify-between items-center px-4 py-3 text-white text-sm z-50">
+                    <span className="font-semibold">
+                      Total MRP: <span className="line-through"></span> ₹{quantity * 599 }
+                    </span>
+                    <button
+                      onClick={nextStep}
+                      disabled={step === 3}
+                      className="bg-orange-400 hover:bg-orange-600 border-2 text-white font-semibold px-4 py-2 rounded"
+                    >
+                      Enter Address
+                    </button>
+                  </div>
+
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-700 mt-10 max-w-5xl mx-auto border-t pt-6">
+              {/* <div className=" grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-700 mt-10 max-w-5xl mx-auto border-t pt-6">
                 <div className="flex items-center gap-2">
                   <span>🚚</span>
                   <div>
@@ -313,7 +608,54 @@ const Toggle = () => {
                     30 Days Money-Back Guarantee
                   </div>
                 </div>
+              </div> */}
+
+
+
+
+              <div className="hidden sm:grid grid-cols-2 md:grid-cols-4  gap-4 text-sm text-gray-700 mt-12 max-w-7xl mx-auto  py-10 px-10  shadow-lg shadow-slate-200  ">
+                <div className="flex items-center gap-2  ">
+                  <span>
+                    <img src={truck}/>
+                  </span>
+                  <div>
+                    <strong>Free Shipping</strong>
+                    <br />
+                    Free shipping on all your order
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span>
+                    <img src={headphone} alt="Support" />
+                  </span>
+                  <div>
+                    <strong>Customer Support 24/7</strong>
+                    <br />
+                    Instant access to Support
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span>  <img src={Group6} alt="Support" /></span>
+                  <div>
+                    <strong>100% Secure Payment</strong>
+                    <br />
+                    We ensure your money is safe
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span>  <img src={packages} alt="Support" /></span>
+                  <div>
+                    <strong>Money-Back Guarantee</strong>
+                    <br />
+                    30 Days Money-Back Guarantee
+                  </div>
+                </div>
               </div>
+
+              
             </div>
           </div>
         );
@@ -321,18 +663,20 @@ const Toggle = () => {
         return (
           // 2 nd page data
           <div className="animate-fade-in">
-            <div>
-              <div className="container mx-auto p-6 bg-white border-2 border-red-400">
+            <div className="mt-2">
+              <div className="container mx-auto p-2 lg:p-3 bg-white  ">
                 {items.length === 0 || showForm ? (
                   <>
-                    <div className="flex flex-col lg:flex-row gap-8">
-                      <div className="w-full lg:w-1/2 border rounded p-6">
-                        <h2 className="text-lg font-semibold mb-4">
+                    <div className="flex flex-col lg:flex-row gap-3 lg:gap-14  md:ml-28  mx-auto">
+                      <div className="w-full lg:w-1/2 border   rounded p-3 lg:p-6 ">
+                        <h2 className="text-lg font-semibold mb-2 lg:mb-4">
                           {editIndex !== null
                             ? "Edit Address"
                             : "Contact Information"}
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+
+                        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-3 border-2 border-red-400 ">
                           <div>
                             <label className="block mb-1 text-sm">
                               Full Name
@@ -340,6 +684,7 @@ const Toggle = () => {
                             <input
                               type="text"
                               name="fullName"
+                              placeholder="Full Name"
                               value={dataForm.fullName}
                               onChange={handleChange}
                               className="w-full p-2 border rounded"
@@ -350,13 +695,15 @@ const Toggle = () => {
                               Mobile Number
                             </label>
                             <div className="flex">
-                              <span className="px-3 flex items-center bg-gray-100 border border-r-0 rounded-l">
+                              <span className="px-3 flex items-center bg-orange-100 border border-r-0 rounded-l">
                                 +91
                               </span>
                               <input
                                 type="text"
                                 name="mobile"
+                                placeholder="6260XXXX54"
                                 value={dataForm.mobile}
+                                maxLength={10}
                                 onChange={handleChange}
                                 className="w-full p-2 border rounded-r"
                               />
@@ -367,24 +714,28 @@ const Toggle = () => {
                             <input
                               type="email"
                               name="email"
+                              placeholder="abc@gmail.com"
                               value={dataForm.email}
                               onChange={handleChange}
                               className="w-full p-2 border rounded"
                             />
                           </div>
-                        </div>
+                        </div> */}
 
-                        <h2 className="text-lg font-semibold mt-6 mb-4">
+                        {/* <h2 className="text-lg font-semibold mt-4 lg:mt-6 mb-2 lg:mb-4">
                           Shipping Address
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <hr /> */}
+
+                        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-4 border-2 border-red-400">
                           <div>
-                            <label className="block mb-1 text-sm">
-                              Address
+                            <label className="block mb-1 mt-1  lg:mt-2 text-sm">
+                              Address( House No ,Building, Street, Area )*
                             </label>
                             <input
                               type="text"
                               name="address"
+                              placeholder="Enter Address"
                               value={dataForm.address}
                               onChange={handleChange}
                               className="w-full p-2 border rounded"
@@ -397,6 +748,7 @@ const Toggle = () => {
                             <input
                               type="text"
                               name="landmark"
+                              placeholder="Enter landmark"
                               value={dataForm.landmark}
                               onChange={handleChange}
                               className="w-full p-2 border rounded"
@@ -409,6 +761,7 @@ const Toggle = () => {
                             <input
                               type="text"
                               name="pincode"
+                              placeholder="Enter pincode"
                               value={dataForm.pincode}
                               onChange={handleChange}
                               className="w-full p-2 border rounded"
@@ -419,25 +772,232 @@ const Toggle = () => {
                             <input
                               type="text"
                               name="city"
+                              placeholder="Enter your city"
                               value={dataForm.city}
                               onChange={handleChange}
                               className="w-full p-2 border rounded"
                             />
                           </div>
-                          <div className="md:col-span-2">
+                          <div>
                             <label className="block mb-1 text-sm">State</label>
-                            <select
+                            <input
+                              type="text"
                               name="state"
+                              placeholder="Select state"
                               value={dataForm.state}
+                              onChange={handleChange}
+                              className="w-full p-2 border rounded"
+                            />
+                          </div>
+                          <div>
+                            <label className="block mb-1 text-sm">
+                              Country
+                            </label>
+                            <select
+                              name="country"
+                              value={dataForm.country}
                               onChange={handleChange}
                               className="w-full p-2 border rounded"
                             >
                               <option>India</option>
                             </select>
                           </div>
-                        </div>
+                        </div> */}
 
-                        {/* Add Cancel button when editing */}
+
+
+
+      <form onSubmit={handleSave} className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-3">
+        <div>
+          <label className="block mb-1 text-sm">Full Name</label>
+          <input
+            type="text"
+            name="fullName"
+            placeholder="Full Name"
+            value={dataForm.fullName}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          />
+          {errors.fullName && (
+            <p className="text-red-500 text-xs">{errors.fullName}</p>
+          )}
+        </div>
+        <div>
+          <label className="block mb-1 text-sm">Mobile Number</label>
+          <div className="flex">
+            <span className="px-3 flex items-center bg-orange-100 border border-r-0 rounded-l">
+              +91
+            </span>
+            <input
+              type="text"
+              name="mobile"
+              placeholder="6260XXXX54"
+              value={dataForm.mobile}
+              maxLength={10}
+              onChange={handleChange}
+              className="w-full p-2 border rounded-r"
+            />
+          </div>
+          {errors.mobile && (
+            <p className="text-red-500 text-xs">{errors.mobile}</p>
+          )}
+        </div>
+        <div className="md:col-span-2">
+          <label className="block mb-1 text-sm">Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="abc@gmail.com"
+            value={dataForm.email}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          />
+          {errors.email && (
+            <p className="text-red-500 text-xs">{errors.email}</p>
+          )}
+        </div>
+      </div>
+
+
+                      <h2 className="text-lg font-semibold mt-4 lg:mt-6 mb-2 lg:mb-4">
+                          Shipping Address
+                        </h2>
+                        <hr />
+
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-4 ">
+        <div>
+          <label className="block mb-1 mt-1 lg:mt-2 text-sm">
+            Address( House No ,Building, Street, Area )*
+          </label>
+          <input
+            type="text"
+            name="address"
+            placeholder="Enter Address"
+            value={dataForm.address}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          />
+          {errors.address && (
+            <p className="text-red-500 text-xs">{errors.address}</p>
+          )}
+        </div>
+        <div>
+          <label className="block mb-1 text-sm">Landmark (Optional)</label>
+          <input
+            type="text"
+            name="landmark"
+            placeholder="Enter landmark"
+            value={dataForm.landmark}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          />
+          {errors.landmark && (
+            <p className="text-red-500 text-xs">{errors.landmark}</p>
+          )}
+        </div>
+        <div>
+          <label className="block mb-1 text-sm">Pincode</label>
+          <input
+            type="text"
+            name="pincode"
+            placeholder="Enter pincode"
+            value={dataForm.pincode}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          />
+          {errors.pincode && (
+            <p className="text-red-500 text-xs">{errors.pincode}</p>
+          )}
+        </div>
+        <div>
+          <label className="block mb-1 text-sm">City</label>
+          <input
+            type="text"
+            name="city"
+            placeholder="Enter your city"
+            value={dataForm.city}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          />
+          {errors.city && (
+            <p className="text-red-500 text-xs">{errors.city}</p>
+          )}
+        </div>
+        <div>
+          <label className="block mb-1 text-sm">State</label>
+          <input
+            type="text"
+            name="state"
+            placeholder="Select state"
+            value={dataForm.state}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          />
+          {errors.state && (
+            <p className="text-red-500 text-xs">{errors.state}</p>
+          )}
+        </div>
+        <div>
+          <label className="block mb-1 text-sm">Country</label>
+          <select
+            name="country"
+            value={dataForm.country}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          >
+            <option>India</option>
+          </select>
+          {errors.country && (
+            <p className="text-red-500 text-xs">{errors.country}</p>
+          )}
+        </div>
+      </div>
+
+
+      </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         {items.length > 0 && (
                           <div className="flex gap-2 mt-4">
                             <button
@@ -452,7 +1012,8 @@ const Toggle = () => {
                                   landmark: "",
                                   pincode: "",
                                   city: "",
-                                  state: "India",
+                                  state: "",
+                                  country: "India",
                                 });
                               }}
                               className="w-full bg-gray-500 text-white py-2 rounded font-semibold"
@@ -463,22 +1024,21 @@ const Toggle = () => {
                         )}
                       </div>
 
-                      {/* RIGHT SIDE: PRODUCT CARD */}
-                      <div className="w-full lg:w-1/2 border rounded p-6">
-                        <div className="mb-4 flex">
+                      <div className="w-full lg:w-1/3 rounded p-2 lg:p-6 ">
+                        <div className="mb-2 lg:mb-4  flex">
                           <img
                             src={single}
                             alt="single"
                             className="w-24 h-32 object-contain"
                           />
                           <div className="ml-4">
-                            <h3 className="font-bold text-md mb-1">
+                            <h3 className="font-bold text-sm lg:text-md mb-1">
                               Herba Essential – Hair Nutrition | 250g
                             </h3>
                             <p className="text-sm">
                               Take 1 sachet daily after meals
                             </p>
-                            <ul className="text-sm text-gray-700 list-disc ml-5 mt-2">
+                            <ul className="text-[0.7rem] lg:text-sm text-gray-700 list-disc ml-5 mt-2">
                               <li>Supports Stronger, Thicker Hair Growth</li>
                               <li>
                                 Helps Control Hairfall & Reverse Premature
@@ -486,67 +1046,107 @@ const Toggle = () => {
                               </li>
                             </ul>
                             <p className="mt-2">MRP: ₹599</p>
+
                             <div className="flex items-center mt-2">
                               <span className="text-black font-bold">
                                 Your price: ₹200
                               </span>
-                              <button className="ml-2 px-2 bg-gray-200 rounded">
+                              <button   onClick={handleDecrease}
+                              className="ml-2 px-2 bg-gray-200 rounded">
                                 -
                               </button>
-                              <span className="mx-2">2</span>
-                              <button className="px-2 bg-orange-500 text-white rounded">
+                              <span className="mx-2">{quantity}</span>
+                              <button   onClick={handleIncrease}
+                              className="px-2 bg-orange-500 text-white rounded">
                                 +
                               </button>
                             </div>
                           </div>
                         </div>
 
-                        <div className="mb-4 border-t pt-4">
-                          <h3 className="font-bold text-md mb-2">
-                            Price Details
-                          </h3>
-                          <p>Total MRP: ₹599</p>
-                          <p>Discount on MRP: ₹399</p>
-                          <p>
-                            Delivery Charges: ₹49{" "}
-                            <span className="line-through">₹49</span>{" "}
-                            <span className="text-green-600">Free</span>
-                          </p>
-                          <p className="font-bold">Total: ₹200</p>
-                        </div>
 
-                        <button
+                   <div className="border rounded p-2 lg:p-4 shadow-sm mb-4 bg-[#FBF7E9]">
+                      <h3 className="font-semibold mb-2">Price Details</h3>
+                      <div className="text-sm space-y-1 text-gray-800">
+                        <div className="flex justify-between">
+                          <span>Total MRP</span>
+                          <span>₹{quantity*599}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Discount on MRP</span>
+                          <span>₹0</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Delivery Charges</span>
+                          <div>
+                            <span className="line-through text-gray-500">
+                              ₹49
+                            </span>{" "}
+                            <span className="text-green-600">Free</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between font-semibold border-t pt-2">
+                          <span>Total</span>
+                          <span>₹{quantity * 599}</span>
+                        </div>
+                      </div>
+                    </div>
+                  
+
+
+                        {/* <button
                           onClick={handleSave}
                           className="w-full bg-orange-500 text-white py-2 rounded font-semibold"
                         >
                           {editIndex !== null ? "UPDATE" : "SAVE"}
-                        </button>
+                        </button> */}
+
+                        <div className="hidden sm:block">
+                          <button
+                            onClick={handleSave}
+                            className="w-full bg-orange-500 text-white py-2 rounded font-semibold"
+                          >
+                            {editIndex !== null ? "UPDATE" : "SAVE"}
+                          </button>
+                        </div>
+
+                        <div className="block sm:hidden fixed bottom-0 inset-x-2 rounded-lg  bg-orange-500 z-50">
+                          <button
+                            onClick={handleSave}
+                            className="w-full text-white text-center py-3 font-semibold text-lg"
+                          >
+                            {editIndex !== null ? "UPDATE" : "SAVE"}
+                          </button>
+                        </div>
                       </div>
+
+
                     </div>
                   </>
                 ) : (
                   <>
-                    <div className="container mx-auto p-4 my-10 ">
-                      <div className="flex space-x-6">
-                        <div className="w-1/2 bg-white p-4 rounded shadow">
+                    <div className="container mx-auto p-2 lg:p-2 my-1 lg:my-2 ">
+                      <div className="flex lg:space-x-3 flex-col md:flex-row ">
+                        <div className="w-full bg-white p-2 lg:p-4 rounded shadow ">
                           <h2 className="font-bold mb-4">Saved Address</h2>
 
-                          <div className="mb-4 p-4 border-2 border-pink-400 rounded">
+                          <div className="mb-4 p-1  rounded">
                             {items.length > 0 ? (
                               items.map((item, index) => (
                                 <div
                                   key={index}
-                                  className="border-2 border-blue-500 rounded-md mb-3 p-4"
+                                  className=" rounded-md mb-1 lg:mb-3 p-1 lg:p-2"
                                 >
-                                  <p>{item.fullName}</p>
-                                  <span className="text-red-500">
-                                    {item.type || "Home"}
-                                  </span>
-                                  <p>{item.address}</p>
-                                  <p>Contact - {item.mobile}</p>
-                                  <p>Email - {item.email}</p>
 
-                                  <div className="mt-2">
+                                  <p >{item.fullName || defaultAddress.name } </p>
+                                  <span className="text-red-500">
+                                    { "Home"}
+                                  </span>
+                                  <p>Address- {item.address || defaultAddress.address}</p>
+                                  <p>Contact - {item.mobile || defaultAddress.contact }</p>
+                                  <p>Email - {item.email || defaultAddress.email }</p>
+
+                                  <div className="mt-1 md:mt-2">
                                     <button
                                       onClick={() => handleEdit(index)}
                                       className="text-blue-600 mr-2"
@@ -583,83 +1183,194 @@ const Toggle = () => {
                           </button>
                         </div>
 
-                        <div className="w-1/2 bg-white p-4 rounded shadow">
-                          <img
-                            src={single}
-                            alt="Product"
-                            className="mb-2 w-24 h-32 object-contain"
-                          />
-                          <h3 className="font-bold">
-                            Herba Essential - Hair Nutrition | 250g
-                          </h3>
-                          <p className="text-sm">
-                            Take 1 sachet daily after meals
-                          </p>
-                          <ul className="text-black text-sm list-disc pl-5">
-                            <li>Supports Stronger, Thicker Hair Growth</li>
-                            <li>
-                              Helps Control Hairfall & Reverse Premature Greying
-                            </li>
-                          </ul>
-                          <p className="text-sm">MRP: ₹599</p>
-                          <div className="flex items-center mt-2">
-                            <span className="text-black font-bold">
-                              Your save ₹200
-                            </span>
-                            <button className="ml-2 p-1 bg-gray-200 rounded">
-                              -
-                            </button>
-                            <span className="mx-2">2</span>
-                            <button className="p-1 bg-orange-500 text-white rounded">
-                              +
-                            </button>
+                        <div className=" flex  flex-col  w-full md:w-1/2  bg-white p-4 rounded shadow  ">
+                          <div className="flex gap-3 lg:gap-4 mb-4">
+                            <div className="flex  w-fit h-fit ">
+                              <img
+                                src={single}
+                                alt="Product"
+                                className=" mb-1 lg:mb-2 w-16 h-20  lg:w-20 lg:h-28  object-contain"
+                              />
+                            </div>
+
+                            <div className=" w-full p-2 ">
+                              <h3 className="font-bold text-[1rem] md:text-[1.3rem] ">
+                                Herba Essential - Hair Nutrition | 250g
+                              </h3>
+                              <p className="text-sm">
+                                Take 1 sachet daily after meals
+                              </p>
+                              <ul className="text-black text-[0.7rem] sm:text-sm list-disc pl-5 mb-3">
+                                <li>Supports Stronger, Thicker Hair Growth</li>
+                                <li>
+                                  Helps Control Hairfall & Reverse Premature
+                                  Greying
+                                </li>
+                              </ul>
+                              <p className="text-sm">MRP: ₹599</p>
+                              <div className="flex items-center mt-2">
+                                <span className="text-black font-bold">
+                                  Your save ₹200
+                                </span>
+                                <button  onClick={handleDecrease}
+                                className="ml-2 p-1 bg-gray-200 rounded">
+                                  -
+                                </button>
+                                <span className="mx-2">{ quantity }</span>
+                                <button    onClick={handleIncrease}
+                                className="p-1 bg-orange-500 text-white rounded">
+                                  +
+                                </button>
+                              </div>
+                            </div>
                           </div>
 
-                          <div className="mt-4">
-                            <h3 className="font-bold">Price Details</h3>
-                            <p>Total MRP: ₹599</p>
-                            <p>Discount on MRP: ₹399</p>
-                            <p>Delivery Charges: ₹49 Free</p>
-                            <p className="font-bold">Total: ₹200</p>
-                          </div>
+                          <div className=" bg-[#FBF7E9] p-2 ">
+                         
 
-                          <button
-                            onClick={nextStep}
-                            disabled={step === 3}
-                            className="w-full bg-orange-500 text-white p-2 rounded mt-4"
-                          >
-                            CONTINUE PAYMENT
-                          </button>
+                    {/* <div className=" rounded p-2 lg:p-4 shadow-sm mb-4 bg-[#FBF7E9]">
+                      <h3 className="font-semibold mb-2">Price Details</h3>
+                      <div className="text-sm space-y-1 text-gray-800">
+                        <div className="flex justify-between">
+                          <span>Total MRP</span>
+                          <span>₹599</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Discount on MRP</span>
+                          <span>₹599</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Delivery Charges</span>
+                          <div>
+                            <span className="line-through text-gray-500">
+                              ₹49
+                            </span>{" "}
+                            <span className="text-green-600">Free</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between font-semibold border-t pt-2">
+                          <span>Total</span>
+                          <span>₹599</span>
+                        </div>
+                      </div>
+                    </div> */}
+
+                    
+                   <div className="border rounded p-2 lg:p-4 shadow-sm mb-4 bg-[#FBF7E9]">
+                      <h3 className="font-semibold mb-2">Price Details</h3>
+                      <div className="text-sm space-y-1 text-gray-800">
+                        <div className="flex justify-between">
+                          <span>Total MRP</span>
+                          <span>₹{quantity*599}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Discount on MRP</span>
+                          <span>₹0</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Delivery Charges</span>
+                          <div>
+                            <span className="line-through text-gray-500">
+                              ₹49
+                            </span>{" "}
+                            <span className="text-green-600">Free</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between font-semibold border-t pt-2">
+                          <span>Total</span>
+                          <span>₹{quantity*599}</span>
+                        </div>
+                      </div>
+                    </div>
+                  
+
+                          
+
+                            <div className="hidden sm:block ">
+                              <button
+                                onClick={nextStep}
+                                disabled={step === 3}
+                                className="w-full bg-orange-500 text-white py-2 rounded mt-4 font-semibold"
+                                >
+                                CONTINUE PAYMENT
+                              </button>
+                            </div>
+
+                            <div className="block sm:hidden  fixed bottom-0 inset-x-2 rounded-lg  bg-orange-500 z-50">
+                              <button
+                                onClick={nextStep}
+                                disabled={step === 3}
+                                className="w-full text-white text-center py-3 font-semibold text-lg"
+                              >
+                                CONTINUE PAYMENT
+                              </button>
+                            </div>
+
+                          </div>
                         </div>
                       </div>
                     </div>
                   </>
                 )}
               </div>
+              
+ 
+
+              <div className="hidden sm:grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-700 mt-10 max-w-7xl mx-auto  py-10 px-10  shadow-lg ">
+                <div className="flex items-center gap-2">
+                  <span>
+                    <img src={truck}/>
+                  </span>
+                  <div>
+                    <strong>Free Shipping</strong>
+                    <br />
+                    Free shipping on all your order
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span>
+                    <img src={headphone} alt="Support" />
+                  </span>
+                  <div>
+                    <strong>Customer Support 24/7</strong>
+                    <br />
+                    Instant access to Support
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span>  <img src={Group6} alt="Support" /></span>
+                  <div>
+                    <strong>100% Secure Payment</strong>
+                    <br />
+                    We ensure your money is safe
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span>  <img src={packages} alt="Support" /></span>
+                  <div>
+                    <strong>Money-Back Guarantee</strong>
+                    <br />
+                    30 Days Money-Back Guarantee
+                  </div>
+                </div>
+              </div>
+
+
             </div>
           </div>
         );
       case 3:
         if (isOrderConfirmed) {
           return (
-            <div className="flex items-center justify-center h-screen bg-gray-100">
-              <div className="bg-white p-10 rounded-lg shadow-md text-center border">
+            <div className="flex items-center justify-center h-1/2   ">
+              <div className="bg-white p-10 rounded-lg  text-center border">
                 <div className="relative inline-block mb-6">
-                  <div className="bg-green-700 rounded-full w-20 h-20 flex items-center justify-center text-white text-3xl shadow-lg z-10 mx-auto">
-                    ✓
-                  </div>
-                  <div className="absolute inset-0 flex flex-wrap justify-center items-center pointer-events-none animate-ping">
-                    {[...Array(15)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="w-1 h-1 bg-green-700 rounded-full absolute"
-                        style={{
-                          top: `${Math.random() * 100}%`,
-                          left: `${Math.random() * 100}%`,
-                        }}
-                      />
-                    ))}
-                  </div>
+                   <img src={right} alt="right" className=""/>
+                
+
                 </div>
 
                 <h2 className="text-xl font-bold text-green-800 mb-2">
@@ -673,7 +1384,8 @@ const Toggle = () => {
                   <button className="px-6 py-2 rounded border border-gray-300 text-sm font-medium">
                     View Order
                   </button>
-                  <button className="px-6 py-2 rounded bg-green-800 text-white text-sm font-medium">
+                  <button  onClick={ContinueShopping}
+                  className="px-6 py-2 rounded bg-green-800 text-white text-sm font-medium">
                     Continue Shopping
                   </button>
                 </div>
@@ -688,43 +1400,47 @@ const Toggle = () => {
             <div className="container mx-auto p-4 my-10">
               <div className="flex justify-center mb-8">
                 <div className="w-full max-w-4xl">
-                  <div className="flex flex-col lg:flex-row gap-6">
-                    <div className="w-full lg:w-2/3 bg-white p-6 rounded-lg border">
-                      <h2 className="font-bold mb-4 text-lg">Payment method</h2>
+                  <div className="flex flex-col lg:flex-row gap-6 ">
+                    <div className="w-full lg:w-3/3 lg:h-fit bg-white p-6 rounded-lg border-2">
+                      <h2 className="font-normal mb-4 text-lg">Payment method</h2>
+                     
                       <div className="flex flex-col gap-4">
-                        <div
-                          className={`flex items-center border p-4 rounded cursor-pointer ${
-                            paymentMethod === "razorpay"
-                              ? "border-green-600 bg-green-50"
-                              : "border-gray-300"
-                          }`}
-                          onClick={() => handlePaymentChange("razorpay")}
-                        >
-                          <input
+                        <div className=" flex"> 
+                       <input
                             type="radio"
                             name="payment"
                             checked={paymentMethod === "razorpay"}
                             onChange={() => handlePaymentChange("razorpay")}
                             className="mr-3"
                           />
-                          <span className="text-sm">
+                       
+                        <div
+                          className={`flex items-center border p-4 w-full rounded cursor-pointer ${
+                            paymentMethod === "razorpay"
+                              ? " bg-[#F4F5F6]"
+                              : "border-gray-300 bg-[#F4F5F6]"
+                          }`}
+                          onClick={() => handlePaymentChange("razorpay")}
+                        >
+                         
+                          <span className="text-[0.65rem] sm:text-sm">
                             Razorpay Secure (UPI, Cards, Wallets, NetBanking)
                           </span>
                           <img
-                            src="https://img.icons8.com/color/48/000000/visa.png"
+                            src={visa}
                             alt="Visa"
-                            className="w-8 ml-auto"
+                            className="w-8  ml-3 pr-1"
                           />
-                        </div>
+                          <img
+                            src={cards}
+                            alt="card"
+                            className="w-8 ml-auto mr-2 "
+                          />
 
-                        <div
-                          className={`flex items-center border p-4 rounded cursor-pointer ${
-                            paymentMethod === "cod"
-                              ? "border-green-600 bg-green-50"
-                              : "border-gray-300"
-                          }`}
-                          onClick={() => handlePaymentChange("cod")}
-                        >
+                            </div>
+                          </div>
+
+                          <div className="  flex"> 
                           <input
                             type="radio"
                             name="payment"
@@ -732,31 +1448,62 @@ const Toggle = () => {
                             onChange={() => handlePaymentChange("cod")}
                             className="mr-3"
                           />
-                          <span className="text-sm">Cash On Delivery</span>
+                          
+                        <div
+                          className={`flex items-center border p-4 w-full rounded cursor-pointer ${
+                            paymentMethod === "cod"
+                              ? " bg-[#F4F5F6]"
+                              : "border-gray-300 bg-[#F4F5F6]"
+                          }`}
+                          onClick={() => handlePaymentChange("cod")}
+                        >
+                         
+                          <span className="text-[0.65rem] sm:text-sm">Cash On Delivery</span>
                           <img
-                            src="https://img.icons8.com/color/48/000000/money.png"
+                            src={cash}
                             alt="Cash"
-                            className="w-8 ml-auto"
+                            className="w-8 ml-3 "
                           />
                         </div>
                       </div>
-                      <button
+                      </div>
+
+                      {/* <button
                         onClick={Continuehandle}
                         className="w-full mt-6 bg-orange-500 text-white py-2 rounded text-sm font-semibold shadow-md hover:bg-orange-600"
                       >
                         CONTINUE
-                      </button>
+                      </button> */}
+
+                           <div className="hidden sm:block mt-3">
+                              <button
+                                onClick={Continuehandle}
+                                className="w-full mt-2 bg-orange-500 text-white py-3 rounded text-sm font-semibold shadow-md hover:bg-orange-600"
+                                >
+                                CONTINUE 
+                              </button>
+                            </div>
+
+                            <div className="block sm:hidden  fixed bottom-0 inset-x-2 rounded-lg  bg-orange-500 z-50 ">
+                              <button
+                               onClick={Continuehandle}
+                                className="w-full mt-1 bg-orange-500 text-white py-2 rounded text-sm font-semibold shadow-md hover:bg-orange-600"
+                                >
+                                CONTINUE 
+                              </button>
+                            </div>
+
                     </div>
 
-                    <div className="w-full lg:w-1/3 bg-white p-6 rounded-lg border">
+                    <div className="w-full lg:w-2/3 bg-white p-6 rounded-lg border">
                       <div className="mb-6 flex gap-4">
                         <img
                           src={single}
                           alt="Product"
                           className="w-24 h-28 object-cover rounded"
                         />
-                        <div>
-                          <h3 className="font-bold text-sm">
+                        <div className=" ">
+                          <h3 className="font-bold text-sm mb-2">
                             Herba Essential – Hair Nutrition | 250g
                           </h3>
                           <p className="text-xs mb-2">
@@ -768,22 +1515,33 @@ const Toggle = () => {
                               Helps Control Hairfall & Reverse Premature Greying
                             </li>
                           </ul>
-                          <p className="text-sm font-medium">MRP: ₹599</p>
-                          <div className="flex items-center mt-2">
-                            <span className="text-green-600 font-bold text-sm">
-                              You save ₹200
-                            </span>
-                            <div className="flex items-center ml-4 border rounded">
-                              <button className="px-2 py-1">-</button>
-                              <span className="px-3">2</span>
-                              <button className="px-2 py-1 bg-orange-500 text-white">
+
+                           <div className="flex justify-between mt-5"> 
+                             <p className="text-sm md:text-[1.3rem] font-medium text-gray-400">MRP: <span className="font-semibold text-black" > ₹599 </span></p>
+                              <div className="flex items-center ml-4 border rounded">
+                              <button   onClick={handleDecrease}
+                              className="px-2 py-1"> - </button>
+                              <span className="px-3">{quantity}</span>
+                              <button   onClick={handleIncrease}
+                              className="px-2 py-1 bg-orange-500 text-white">
                                 +
                               </button>
                             </div>
+                            </div>
+
+                          <div className="flex items-center mt-1">
+                            <span className="text-orange-400 font-bold text-[0.7rem] lg:text-[0.9rem]">
+                              You save ₹200
+                            </span>
+
+
+                           
                           </div>
                         </div>
                       </div>
-                      <div className="mb-4 text-sm">
+
+
+                      {/* <div className="mb-4 text-sm border-2">
                         <h4 className="font-bold mb-2">Price Details</h4>
                         <div className="flex justify-between">
                           <span>Total MRP</span>
@@ -804,30 +1562,94 @@ const Toggle = () => {
                           <span>Total</span>
                           <span>₹599</span>
                         </div>
+                      </div> */}
+
+                    <div className=" rounded p-2 lg:p-4 shadow-sm mb-4 bg-[#FBF7E9]">
+                      <h3 className="font-semibold mb-2">Price Details</h3>
+                      <div className="text-sm space-y-1 text-gray-800">
+                        <div className="flex justify-between">
+                          <span>Total MRP</span>
+                          <span>₹{quantity*599}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Discount on MRP</span>
+                          <span>₹0</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Delivery Charges</span>
+                          <div>
+                            <span className="line-through text-gray-500">
+                              ₹49
+                            </span>{" "}
+                            <span className="text-green-600">Free</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between font-semibold border-t pt-2">
+                          <span>Total</span>
+                          <span>₹{quantity*599}</span>
+                        </div>
                       </div>
+                    </div>
+
+
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 text-sm text-gray-700">
-                    <div className="text-center">
-                      🚚 <p className="font-medium">Free Shipping</p>
-                      <p className="text-xs">Free shipping on all your order</p>
-                    </div>
-                    <div className="text-center">
-                      👤 <p className="font-medium">Customer Support 24/7</p>
-                      <p className="text-xs">Instant access to Support</p>
-                    </div>
-                    <div className="text-center">
-                      🔒 <p className="font-medium">100% Secure Payment</p>
-                      <p className="text-xs">We ensure your money is safe</p>
-                    </div>
-                    <div className="text-center">
-                      📦 <p className="font-medium">Money-Back Guarantee</p>
-                      <p className="text-xs">30 Days Money-Back Guarantee</p>
-                    </div>
+                  
+
+
+
+
+                </div>
+              </div>
+
+             
+
+
+              <div className="hidden sm:grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-700 mt-10 max-w-7xl mx-auto  py-7 px-10  shadow-lg ">
+                <div className="flex items-center gap-2">
+                  <span>
+                    <img src={truck}/>
+                  </span>
+                  <div>
+                    <strong>Free Shipping</strong>
+                    <br />
+                    Free shipping on all your order
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span>
+                    <img src={headphone} alt="Support" />
+                  </span>
+                  <div>
+                    <strong>Customer Support 24/7</strong>
+                    <br />
+                    Instant access to Support
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span>  <img src={Group6} alt="Support" /></span>
+                  <div>
+                    <strong>100% Secure Payment</strong>
+                    <br />
+                    We ensure your money is safe
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span>  <img src={packages} alt="Support" /></span>
+                  <div>
+                    <strong>Money-Back Guarantee</strong>
+                    <br />
+                    30 Days Money-Back Guarantee
                   </div>
                 </div>
               </div>
+
+
+
             </div>
           </div>
         );
@@ -836,82 +1658,375 @@ const Toggle = () => {
     }
   };
 
+
   return (
-    <div>
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br  from-blue-100 via-white to-green-100 mt-16">
-        <div className="  bg-white/95 shadow-xl rounded-3xl p-8 md:p-12 w-fit ">
-          <div className="w-full flex justify-center">
-            <div className="flex items-center justify-between mb-8 px-2 select-none w-fit">
-              {[1, 2, 3].map((num, idx) => (
-                <div key={num} className="flex items-center group">
-                  <div
-                    className={`
-            flex items-center justify-center w-10 h-10 rounded-full
-            font-bold border-4 transition-all duration-300 
-            ${
-              step > num
-                ? "bg-green-500 border-green-500 text-white"
-                : step === num
-                ? "bg-blue-600 border-blue-400 shadow-lg text-white"
-                : "bg-gray-200 border-gray-300 text-gray-500"
-            }
-            group-hover:scale-105
-          `}
-                  >
-                    {step > num ? (
-                      <svg
-                        width="20"
-                        height="20"
-                        className="text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M6.397 10.293a1 1 0 011.416 0L10 12.48l4.187-4.188a1 1 0 111.415 1.415l-4.895 4.895a1 1 0 01-1.415 0l-2.188-2.187a1 1 0 010-1.415z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    ) : (
-                      num
-                    )}
-                  </div>
-                  {idx !== 2 && (
-                    <div
-                      className={`
-              h-1 w-10 mx-1 rounded 
-              ${step > num ? "bg-green-500" : "bg-gray-300"}
-              transition-all duration-300
-            `}
-                    ></div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 transition-all duration-300">
-            {renderForm()}
+// currect code acurate
+<div className="mt-24">
 
-            <div className="flex justify-between mt-8 gap-2">
-              <button
-                type="button"
-                className="
-                  px-6 py-3 rounded-xl font-semibold shadow-sm
-                  bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-800
-                  transition disabled:opacity-50 disabled:cursor-not-allowed
-                "
-                onClick={prevStep}
-                disabled={step === 1}
-              >
-                Back
-              </button>
-            </div>
-          </div>
+  {/* <div className="min-h-screen flex items-center justify-center">
+  
+    <div className="bg-white/95  rounded-3xl p-5 md:p-8 w-full">
+        <h2 className="text-green-700 font-semibold text-center mb-5 sm:hidden">
+        Checkout
+        <div className="relative flex justify-between -top-7 right-2 gap-2">
+          <button
+            type="button"
+            className="
+              px-3 py-3 rounded-full font-semibold shadow-sm
+              bg-orange-500 text-white text-[1rem]
+              transition disabled:opacity-80 disabled:cursor-not-allowed
+            "
+            onClick={prevStep}
+            disabled={step === 1}
+          >  
+           <IoIosArrowBack />
+          </button>
         </div>
+      </h2>
+      
+      <div className="w-full flex justify-center">
+        
+        <div className="flex items-center justify-between mb-8 px-2 select-none w-fit">
+          {arr.map((num, idx) => (
+            <div key={idx} className="flex items-center group">
+              <div className="flex flex-col items-center pt-1 gap-1">
+                <div
+                  className={`
+                    flex items-center justify-center w-12 h-12 rounded-full
+                    font-bold transition-all duration-300 text-2xl
+                    ${
+                      step  > num.no  
+                        ? "bg-green-500 text-white"      
+                        : step === num.no
+                          ? "bg-white text-gray-400 border-2"          
+                          : "bg-white text-gray-400 border-2"   
+                    }
+                    group-hover:scale-105
+                  `}
+                >
+                  {num.icon}
+                </div>
+                <span className={`text-sm font-medium ${
+                  step  > num.no 
+                    ? "text-green-600"          
+                    : step === num.no 
+                      ? "text-gray-600"        
+                      : "text-gray-500"          
+                }`}>
+                  {num.label}
+                </span>
+              </div>
+               
+              {idx !== arr.length - 1 && (
+                <div
+                  className={`
+                    h-1 w-16 md:w-48 lg:w-72 xl:w-96 rounded
+                    ${step > num.no ? "bg-green-500" : "bg-gray-300"}
+                    transition-all duration-300
+                  `}
+                > </div>
+              )}
+            </div>
+          ))}
+        </div>
+        
+      </div>
+
+     <div className="w-full text-center mb-4">  
+
+        <span className="text-green-500 mr-2 ">
+           <img src={shape} alt="shape" className="inline"/>
+             Your save ₹200 
+        </span>
+        on this order today!
+      
+      </div>
+      <div class="absolute w-full left-0 right-0 h-2 bg-gradient-to-t from-white to-orange-100 "></div>
+
+
+
+      <div className="bg-white rounded-2xl p-1 lg:p-2 transition-all duration-300">
+        {renderForm()}
+      </div>
+    
+      
+    </div>
+  </div> */}
+
+
+
+
+
+  {/* <div className="min-h-screen flex items-center justify-center">
+    <div className="bg-white/95 rounded-3xl p-5 md:p-8 w-full">
+      
+      <h2 className="text-green-700 font-semibold text-center mb-5 sm:hidden">
+        Checkout
+        <div className="relative flex justify-between -top-7 right-2 gap-2">
+          <button
+            type="button"
+            className="px-3 py-3 rounded-full font-semibold shadow-sm
+                       bg-orange-500 text-white text-[1rem]
+                       transition disabled:opacity-80 disabled:cursor-not-allowed"
+            onClick={prevStep}
+            disabled={step === 1}
+          >  
+            <IoIosArrowBack />
+          </button>
+        </div>
+      </h2>
+      
+      <div className="w-full flex justify-center">
+        <div className="flex items-center justify-between mb-8 px-2 select-none w-fit">
+
+
+
+      { 
+        <div
+      className={`
+        h-1 w-14 sm:w-24 md:w-34   rounded
+        ${step > 0 ? "bg-green-600" : "bg-gray-300"}
+        transition-all duration-300
+      `}
+      ></div>
+      }
+
+
+          {arr.map((num, idx) => (
+            <div key={idx} className="flex items-center group">
+              <div className="flex flex-col items-center pt-1 gap-1">
+
+             
+                <div
+                  className={`
+                    flex items-center justify-center w-10 h-10 rounded-full
+                    transition-all duration-300 text-lg
+                    ${
+                      step > num.no
+                        ? "bg-green-600 text-white"
+                        : step === num.no
+                          ? "bg-green-600 text-white"
+                          : "bg-white border-2 border-gray-300 text-gray-400"
+                    }
+                  `}
+                > 
+                  {num.icon}
+                </div>
+                
+               
+                <span
+                  className={`text-sm font-medium ${
+                    step > num.no 
+                      ? "text-green-600"
+                      : step === num.no
+                        ? "text-green-600"
+                        : "text-gray-500"
+                  }`}
+                >
+                  {num.label}
+                </span>
+
+              </div>
+
+              {idx !== arr.length - 1 && (
+                <div
+                  className={`
+                    h-1 w-16 sm:w-36 md:w-48 lg:w-72 xl:w-96 rounded
+                    ${step > num.no ? "bg-green-600" : "bg-gray-300"}
+                    transition-all duration-300
+                  `}
+                ></div>
+              )}
+
+            
+
+            </div>
+          ))}
+
+
+
+
+
+
+    {
+       <div
+      className={`
+        h-1 w-14 sm:w-24 md:w-34   rounded
+        ${step > arr.length ? "bg-green-600" : "bg-gray-300"}
+        transition-all duration-300
+      `}
+    ></div>
+    }
+
+        </div>
+        
+      </div>
+
+      <div className="w-full text-center mb-4">  
+        <span className="text-green-600 font-medium mr-2">
+          <img src={shape} alt="shape" className="inline w-4 h-4 mr-1" />
+          You save ₹200
+        </span>
+        on this order today!
+      </div>
+
+      <div className="absolute w-full left-0 right-0 h-2 bg-gradient-to-t from-white to-orange-100"></div>
+
+      <div className="bg-white rounded-2xl p-1 lg:p-2 transition-all duration-300">
+        {renderForm()}
       </div>
     </div>
+  </div> */}
+
+
+
+
+<div className="min-h-screen flex items-center justify-center">
+  <div className="bg-white/95 rounded-3xl p-5 md:p-8 w-full">
+    
+    <h2 className=" relative text-green-700 font-semibold text-center  sm:hidden  top-5">
+      Checkout
+      <div className="relative flex justify-between -top-7 left-1 ">
+        <button
+          type="button"
+          className="px-3 py-3 rounded-full font-semibold shadow-sm
+                     bg-orange-500 text-white text-[1rem]
+                     transition disabled:opacity-80 disabled:cursor-not-allowed"
+          onClick={prevStep}
+          disabled={step === 1}
+        >  
+          <IoIosArrowBack />
+        </button>
+      </div>
+    </h2>
+    
+    <div className="w-full flex justify-center">
+      <div className="flex items-center justify-between mb-2 px-2 select-none w-fit">
+
+        {/* left side line */}
+        <div className="relative h-1 w-14 sm:w-24 md:w-34 rounded bg-gray-300 overflow-hidden">
+          {step > 0 && (
+            <div className="absolute left-0 top-0 h-full w-full bg-green-600 transition-all duration-300"></div>
+          )}
+          {step === 1 && (
+            <div className="absolute left-0 top-0 h-full w-1/2 bg-green-600 transition-all duration-300"></div>
+          )}
+        </div>
+
+        {arr.map((num, idx) => (
+          <div key={idx} className="flex items-center group">
+            <div className="flex flex-col items-center pt-1 gap-1">
+
+              {/* step circle */}
+              <div
+                className={`
+                  flex items-center justify-center w-10 h-10 rounded-full
+                  transition-all duration-300 text-lg
+                  ${
+                    step > num.no
+                      ? "bg-green-600 text-white"
+                      : step === num.no
+                        ? "bg-green-600 text-white"
+                        : "bg-white border-2 border-gray-300 text-gray-400"
+                  }
+                `}
+              > 
+                {num.icon}
+              </div>
+              
+              <span
+                className={`text-sm font-medium ${
+                  step > num.no 
+                    ? "text-green-600"
+                    : step === num.no
+                      ? "text-green-600"
+                      : "text-gray-500"
+                }`}
+              >
+                {num.label}
+              </span>
+
+            </div>
+
+            {/* connecting line */}
+            {idx !== arr.length - 1 && (
+              <div className="relative h-1 w-16 sm:w-36 md:w-48 lg:w-72 xl:w-96 rounded bg-gray-300 overflow-hidden">
+                {step > num.no && (
+                  <div className="absolute left-0 top-0 h-full w-full bg-green-600 transition-all duration-300"></div>
+                )}
+                {step === num.no && (
+                  <div className="absolute left-0 top-0 h-full w-1/2 bg-green-600 transition-all duration-300"></div>
+                )}
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* right side line */}
+        <div className="relative h-1 w-14 sm:w-24 md:w-34 rounded bg-gray-300 overflow-hidden">
+          {step > arr.length && (
+            <div className="absolute left-0 top-0 h-full w-full bg-green-600 transition-all duration-300"></div>
+          )}
+          {step === arr.length && (
+            <div className="absolute left-0 top-0 h-full w-full bg-green-600 transition-all duration-300"></div>
+          )}
+        </div>
+
+      </div>
+    </div>
+
+    <div className="w-full text-center mb-4">  
+      <span className="text-green-600 font-medium mr-2">
+        <img src={shape} alt="shape" className="inline w-4 h-4 mr-1" />
+        You save ₹200
+      </span>
+      on this order today!
+    </div>
+
+    <div className="absolute w-full left-0 right-0 h-2 bg-gradient-to-t from-white to-orange-100"></div>
+
+    <div className="bg-white rounded-2xl p-1 lg:p-2 transition-all duration-300">
+      {renderForm()}
+    </div>
+  </div>
+</div>
+
+ 
+
+
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   );
 };
 
 export default Toggle;
+

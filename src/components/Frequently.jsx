@@ -44,8 +44,8 @@ const Frequently = () => {
 
   return (
       <div>
-        <section className="max-w-7xl mx-auto lg:px-4 py-10 flex flex-row justify-around xl:gap-4 lg:gap-3 border-2 px-3 border-black ">
-          <div className="border-2 hidden  border-black md:flex flex-col items-center md:items-start text-center md:text-left w-fit h-fit">
+        <section className="max-w-7xl mx-auto lg:px-4 py-10 flex flex-row justify-around xl:gap-4 lg:gap-3  px-3  ">
+          <div className=" hidden   md:flex flex-col items-center md:items-start text-center md:text-left w-fit h-fit">
             <img
               src={gp}
               alt="Herba Essential"
