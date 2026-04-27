@@ -17,26 +17,26 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { PopupProvider } from "./context/PopupContext";
 import  { Toaster } from "react-hot-toast";
-import Lenis from 'lenis'
+// import Lenis from 'lenis'
 import React from "react";
 
 function App() {
 
 
-  useEffect(() => {
-    const lenis = new Lenis({
-      lerp: 0.05,     // smoothness (0.05 = very smooth)
-      smooth: true,
-    });
+  // useEffect(() => {
+  //   const lenis = new Lenis({
+  //     lerp: 0.05,     // smoothness (0.05 = very smooth)
+  //     smooth: true,
+  //   });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+  //   function raf(time) {
+  //     lenis.raf(time);
+  //     requestAnimationFrame(raf);
+  //   }
 
-    requestAnimationFrame(raf);
+  //   requestAnimationFrame(raf);
 
-  }, []);
+  // }, []);
 
  
 
