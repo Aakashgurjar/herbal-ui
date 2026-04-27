@@ -30,9 +30,14 @@ import Cody from "../assets/cody.png";
 import Jenny from "../assets/jenny.png";
 import leaf from "../assets/leaf.png";
 
-import img6 from "../assets/img6.png";
-import img7 from "../assets/img7.png";
-import img8 from "../assets/img8.png";
+// import img6 from "../assets/img6.png";
+// import img7 from "../assets/img7.png";
+// import img8 from "../assets/img8.png";
+
+import img6 from "../assets/Img6.png";
+import img7 from "../assets/Img7.png";
+import img8 from "../assets/Img8.png";
+
 import Toggle from "./Toggle";
 
 import { FaArrowRight } from "react-icons/fa6";

@@ -34,9 +34,14 @@ import ProductEffect from "../components/ProductEffect";
 import Frequently from "../components/Frequently";
 import Herba from "../components/Herba";
 
-import img6 from "../assets/img6.png";
-import img7 from "../assets/img7.png";
-import img8 from "../assets/img8.png";
+// import img6 from "../assets/img6.png";
+// import img7 from "../assets/img7.png";
+// import img8 from "../assets/img8.png";
+
+import img6 from "../assets/Img6.png";
+import img7 from "../assets/Img7.png";
+import img8 from "../assets/Img8.png";
+
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { PopupContext } from "../context/PopupContext";
 
